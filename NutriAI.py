@@ -1,5 +1,35 @@
 import streamlit as st
 import speech_recognition as sr
+from streamlit.components.v1 import html
+
+# Define custom CSS for dark mode
+dark_mode_css = """
+<style>
+body {
+    background-color: #1e1e1e;
+    color: white;
+}
+</style>
+"""
+
+# Define custom CSS for light mode
+light_mode_css = """
+<style>
+body {
+    background-color: white;
+    color: black;
+}
+</style>
+"""
+
+# Sidebar option for dark/light mode
+mode = st.sidebar.selectbox("Choose Theme", ["Light Mode", "Dark Mode"])
+
+# Apply the chosen theme
+if mode == "Dark Mode":
+    st.markdown(dark_mode_css, unsafe_allow_html=True)
+else:
+    st.markdown(light_mode_css, unsafe_allow_html=True)
 
 st.title("Voice-Based Nutrition Specialist Chatbot")
 
