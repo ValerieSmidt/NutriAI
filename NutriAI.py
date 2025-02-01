@@ -161,4 +161,4 @@ if st.button('Speak'):
         # Here you would integrate with your chatbot model
 
 # Placeholder for chatbot response
-st.write("Bot response will be shown here.")
+st.write("I'm a nutrition specialist. How can I help you today?")
