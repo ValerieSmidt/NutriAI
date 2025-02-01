@@ -197,7 +197,7 @@ for message in st.session_state.messages:
 # Input for questions, check if the input field should be disabled
 if not st.session_state.input_disabled:
     prompt = st.chat_input(
-        "Still assistenten spørsmål om NEET",  # Default message for input
+        "Ask the nutrition-bot anything",  # Default message for input
         disabled=st.session_state.input_disabled  # Disable input while waiting for server response
     )
 
