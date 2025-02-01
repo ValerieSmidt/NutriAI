@@ -39,7 +39,7 @@ body {
     background-color: white;
     color: black;
 }
-.stSidebar {
+stSidebar {
     background-color: #f0f0f5;
     color: black;
 }
@@ -116,7 +116,7 @@ input:checked + .slider:after {
 </style>
 """
 
-# Add the toggle switch CSS
+# Apply the toggle switch CSS
 st.markdown(toggle_switch_css, unsafe_allow_html=True)
 
 # Initialize session state
@@ -135,10 +135,26 @@ else:
 
 st.title("Voice-Based Nutrition Specialist Chatbot")
 
-# Initialize recognizer class (for recognizing the speech)
+# Load doctor avatar image
+doctor_avatar_url = "https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+
+# Initialize speech recognizer
 r = sr.Recognizer()
 
+def process_text(text):
+    """Process user input and return a chatbot response."""
+    text = text.lower()
+    if "diet" in text or "nutrition" in text:
+        return "A balanced diet should include proteins, carbs, and healthy fats."
+    elif "exercise" in text:
+        return "Regular exercise improves overall health. Aim for at least 30 minutes daily."
+    elif "vitamins" in text:
+        return "Vitamins are essential for your body. Consider vitamin D and B12 supplements."
+    else:
+        return "I'm a nutrition specialist. How can I help you today?"
+
 def get_audio():
+    """Capture and recognize user speech input."""
     with sr.Microphone() as source:
         st.write("Listening...")
         audio = r.listen(source, phrase_time_limit=5)
@@ -153,12 +169,20 @@ def get_audio():
         st.write(f"Could not request results; {e}")
         return None
 
+# Text input field for manual typing
+question = st.text_input("Type your question here:")
+
+# Button for speech input
 if st.button('Speak'):
     st.write("Please speak into the microphone.")
     question = get_audio()
-    if question:
-        st.write(f"You said: {question}")
-        # Here you would integrate with your chatbot model
 
-# Placeholder for chatbot response
-st.write("I'm a nutrition specialist. How can I help you today?")
+if question:
+    response = process_text(question)
+    
+    # Display bot response with doctor avatar
+    col1, col2 = st.columns([0.1, 0.9])  # Avatar in first column, text in second
+    with col1:
+        st.image(doctor_avatar_url, width=40)
+    with col2:
+        st.write(response)
