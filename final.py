@@ -1,13 +1,7 @@
 import streamlit as st
 from ragflow_sdk import RAGFlow, Agent
-import requests  # Import the requests module
-# from jsonpath_ng import jsonpath, parse
-import ast
-import json 
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 from gradio_client import Client, handle_file
-import av
-import pydub
 import base64
 from gradio_client import Client
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, AudioProcessorBase
@@ -141,11 +135,11 @@ if not st.session_state.input_disabled:
     audio_value = st.audio_input("Record a voice message")
 
     if audio_value:
-        with open("/Users/djordjemijajlovic/temp.wav", "wb") as f:
+        with open("temp.wav", "wb") as f:
             f.write(audio_value.read())
 
         result_audio = client.predict(
-            audio_path=handle_file('/Users/djordjemijajlovic/temp.wav'),
+            audio_path=handle_file('temp.wav'),
             language=language,
             api_name="/speech_recognition"
         )
@@ -166,10 +160,10 @@ if not st.session_state.input_disabled:
 
         binary = base64.b64decode(result_b64[1])
 
-        with open('/Users/djordjemijajlovic/temp.mp3', "wb") as f:
+        with open('temp.mp3', "wb") as f:
             f.write(binary)
 
-        st.audio('/Users/djordjemijajlovic/temp.mp3', autoplay=True)
+        st.audio('temp.mp3', autoplay=True)
 
         result_audio=""
 
