@@ -7,7 +7,10 @@ NutrifAI is an AI-powered Agent designed to provide nutritional advice and exper
 - **Multiple Agents**: Choose from various specialized agents such as Nutritionalist, Diabetes Expert, Private Trainer, Dietitian, Pediatric Nutritionist, and Oncology Nutritionist. Each agent has their own knowledgebase, which leads to quicker response times and prevents hallucination.
 - **Text and Voice Input**: Users can ask questions via text input or record a voice message. This provides accessibility for users. 
 - **Speech Recognition and Text-to-Speech**: Integrates capabilities to convert voice input to text and provide responses via synthesized speech.
-
+## Our Tech-stack
+![alt text](https://github.com/ValerieSmidt/NutrifAI/blob/main/techstack.png)
+## RagFlow
+![alt text](https://github.com/ValerieSmidt/NutrifAI/blob/main/flow.png)
 ## Requirements
 
 - Python 3.6+
